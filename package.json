@@ -1,0 +1,32 @@
+{
+  "name": "appsync-masterclass-backend",
+  "private": true,
+  "version": "1.0.0",
+  "description": "Master class backend for appsync class",
+  "main": "index.js",
+  "scripts": {
+    "sls": "sls"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/trey-rosius/appsync-masterclass-backend.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/trey-rosius/appsync-masterclass-backend/issues"
+  },
+  "homepage": "https://github.com/trey-rosius/appsync-masterclass-backend#readme",
+  "devDependencies": {
+    "@types/jest": "^27.4.1",
+    "aws-sdk": "^2.1098.0",
+    "jest": "^27.5.1",
+    "serverless": "2.4.0",
+    "serverless-appsync-plugin": "^1.12.1",
+    "serverless-iam-roles-per-function": "^3.2.0"
+  },
+  "dependencies": {
+    "chance": "^1.1.8"
+  }
+}
