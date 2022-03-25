@@ -1,8 +1,7 @@
 const given = require("../../steps/given");
 const when = require("../../steps/when");
-const then = require("../../steps/then");
 const path = require("path");
-
+const chance = require("chance").Chance();
 describe("Query.getMyProfile.request template", () => {
   it("Should use username as 'id", () => {
     const templatePath = path.resolve(
@@ -13,6 +12,7 @@ describe("Query.getMyProfile.request template", () => {
 
     const context = given.an_appsync_context({ username }, {});
 
+    console.log(`template path is ${templatePath}`);
     const result = when.we_invoke_an_appsync_template(templatePath, context);
 
     expect(result).toEqual({
