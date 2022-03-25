@@ -5,7 +5,11 @@
   "description": "Master class backend for appsync class",
   "main": "index.js",
   "scripts": {
-    "sls": "sls"
+    "sls": "sls",
+    "exportEnv": "sls export-env",
+    "test": "jest --verbose ./__tests__/test_cases/unit",
+    "integration-test": "jest --verbose ./__tests__/test_cases/integration",
+    "e2e-test": "jest --verbose ./__tests__/test_cases/e2e"
   },
   "repository": {
     "type": "git",
@@ -20,10 +24,14 @@
   "homepage": "https://github.com/trey-rosius/appsync-masterclass-backend#readme",
   "devDependencies": {
     "@types/jest": "^27.4.1",
+    "amplify-appsync-simulator": "^2.3.10",
+    "amplify-velocity-template": "^1.4.7",
     "aws-sdk": "^2.1098.0",
+    "dotenv": "^16.0.0",
     "jest": "^27.5.1",
     "serverless": "2.4.0",
     "serverless-appsync-plugin": "^1.12.1",
+    "serverless-export-env": "^2.1.0",
     "serverless-iam-roles-per-function": "^3.2.0"
   },
   "dependencies": {

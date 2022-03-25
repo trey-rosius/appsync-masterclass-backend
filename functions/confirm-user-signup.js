@@ -25,11 +25,13 @@ module.exports.handler = async (event) => {
       tweetsCount: 0,
       likesCount: 0,
     };
+
     await DocumentClient.put({
       TableName: USERS_TABLE,
       Item: user,
       ConditionExpression: "attribute_not_exists(id)",
-    });
+    }).promise();
+
     return event;
   } else {
     return event;
