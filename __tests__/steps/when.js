@@ -3,6 +3,7 @@ const AWS = require("aws-sdk");
 const fs = require("fs");
 const velocityMapper = require("amplify-appsync-simulator/lib/velocity/value-mapper/mapper");
 const velocityTemplate = require("amplify-velocity-template");
+const GraphQL = require("../lib/graphql");
 const a_user_signs_up = async (password, name, email) => {
   const cognito = new AWS.CognitoIdentityServiceProvider();
 
@@ -92,17 +93,20 @@ const a_user_calls_getMyProfile = async (user) => {
     screenName
     tweetsCount
     website
-    tweets {
-      nextToken
-      tweets {
-        createdAt
-        id
-      }
-    }
+   
   }
 }`;
 
-  const data = await GraphQL(user.accessToken);
+  const data = await GraphQL(
+    process.env.API_URL,
+    getMyProfile,
+    {},
+    user.accessToken
+  );
+
+  const profile = data.getMyProfile;
+  console.log(`[${user.username}] - fetched profile`);
+  return profile;
 };
 module.exports = {
   we_invoke_confirmUSerSignup,

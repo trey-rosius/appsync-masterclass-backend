@@ -1,6 +1,6 @@
 const http = require("axios");
 const _ = require("lodash");
-const throwOnErrors = ({ query, variables, error }) => {
+const throwOnErrors = ({ query, variables, errors }) => {
   if (errors) {
     const errorMessage = `
         query:${query.substr(0, 100)}
@@ -32,5 +32,6 @@ module.exports = async (url, query, variables = {}, auth) => {
   } catch (err) {
     const errors = _.get(err, "response.data.errors");
     throwOnErrors({ query, variables, errors });
+    throw err;
   }
 };
