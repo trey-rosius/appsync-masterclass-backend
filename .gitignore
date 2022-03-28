@@ -6,3 +6,6 @@ jspm_packages
 .serverless
 
 .env
+# Ignore serverless manifest files
+serverless.manifest.json
+.serverless/manifest.json
