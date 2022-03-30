@@ -6,7 +6,7 @@ const { BUCKET_NAME } = process.env;
 
 module.exports.handler = async (event) => {
   const id = ulid.ulid();
-  const key = `${event.identity.username}/${id}`;
+  let key = `${event.identity.username}/${id}`;
 
   const extension = event.arguments.extension;
   if (extension) {

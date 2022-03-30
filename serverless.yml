@@ -16,8 +16,9 @@ provider:
     AWS_NODEJS_CONNECTION_REUSE_ENABLED: "1"
     #COGNITO_USER_POOL_ID: !Ref CognitoUserPool
     USERS_TABLE: !Ref UsersTable
+    BUCKET_NAME: !Ref AssetsBucket
     #AWS_REGION: ${opt:region, self:provider.region}
-    #WEB_COGNITO_USER_POOL_CLIENT_ID: !Ref WebUserPoolClient
+    # WEB_COGNITO_USER_POOL_CLIENT_ID: !Ref WebUserPoolClient
 
 package:
   exclude:
