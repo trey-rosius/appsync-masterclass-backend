@@ -3,7 +3,7 @@ const when = require("../../steps/when");
 const path = require("path");
 const chance = require("chance").Chance();
 describe("Query.getMyProfile.request template", () => {
-  it("Should use username as 'id", () => {
+  it.skip("Should use username as 'id", () => {
     const templatePath = path.resolve(
       __dirname,
       "../../../mapping-templates/Query.getMyProfile.request.vtl"

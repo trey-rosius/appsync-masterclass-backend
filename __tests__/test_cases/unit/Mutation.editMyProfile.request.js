@@ -3,7 +3,7 @@ const when = require("../../steps/when");
 const path = require("path");
 const chance = require("chance").Chance();
 describe("Mutaion.editMyProfile.request template", () => {
-  it("Should use 'newProfile' fields in expression values", () => {
+  it.skip("Should use 'newProfile' fields in expression values", () => {
     const templatePath = path.resolve(
       __dirname,
       "../../../mapping-templates/Mutation.editMyProfile.request.vtl"
