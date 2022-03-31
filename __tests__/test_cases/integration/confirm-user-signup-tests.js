@@ -10,7 +10,7 @@ describe("when confirmUserSignup runs", () => {
     const username = chance.guid();
 
     console.log(`username is ${username}`);
-    await when.we_invoke_confirmUSerSignup(username, name, email);
+    await when.we_invoke_confirmUserSignup(username, name, email);
 
     const ddbUser = await then.user_exists_in_UsersTable(username);
 

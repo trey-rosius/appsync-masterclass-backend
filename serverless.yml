@@ -15,10 +15,13 @@ provider:
     STAGE: ${self:custom.stage}
     AWS_NODEJS_CONNECTION_REUSE_ENABLED: "1"
     #COGNITO_USER_POOL_ID: !Ref CognitoUserPool
-    USERS_TABLE: !Ref UsersTable
-    BUCKET_NAME: !Ref AssetsBucket
+    # USERS_TABLE: !Ref UsersTable
+    #BUCKET_NAME: !Ref AssetsBucket
+
+    #TWEETS_TABLE: !Ref TweetsTable
+    #TIMELINES_TABLE: !Ref TimelinesTable
     #AWS_REGION: ${opt:region, self:provider.region}
-    # WEB_COGNITO_USER_POOL_CLIENT_ID: !Ref WebUserPoolClient
+    #WEB_COGNITO_USER_POOL_CLIENT_ID: !Ref WebUserPoolClient
 
 package:
   exclude:
@@ -63,8 +66,8 @@ functions:
     handler: functions/tweet.handler
     environment:
       USERS_TABLE: !Ref UsersTable
-      TWEETS_TABLE_NAME: !Ref TweetsTable
-      TIMELINES_TABLE_NAME: !Ref TimelinesTable
+      TWEETS_TABLE: !Ref TweetsTable
+      TIMELINES_TABLE: !Ref TimelinesTable
 
     iamRoleStatements:
       - Effect: Allow

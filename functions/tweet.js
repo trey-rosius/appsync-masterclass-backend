@@ -3,7 +3,7 @@ const DocumentClient = new DynamoDB.DocumentClient();
 const ulid = require("ulid");
 const { TweetTypes } = require("../lib/constants");
 
-const { USERS_TABLE, TWEETS_TABLE_NAME, TIMELINES_TABLE_NAME } = process.env;
+const { USERS_TABLE, TWEETS_TABLE, TIMELINES_TABLE } = process.env;
 module.exports.handler = async (event) => {
   const { text } = event.arguments;
   const { username } = event.identity;
@@ -25,13 +25,13 @@ module.exports.handler = async (event) => {
     TransactItems: [
       {
         Put: {
-          TableName: TWEETS_TABLE_NAME,
+          TableName: TWEETS_TABLE,
           Item: newTweet,
         },
       },
       {
         Put: {
-          TableName: TIMELINES_TABLE_NAME,
+          TableName: TIMELINES_TABLE,
           Item: {
             userId: username,
             tweetId: id,

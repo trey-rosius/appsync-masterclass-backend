@@ -23,7 +23,7 @@ describe("Given an authenticated user", () => {
       await then.tweet_exists_in_TimelinesTable(user.username, tweet.id);
     });
     it("Increment the tweetsCount in the Users table to 1", async () => {
-      await then.tweet_count_is_updated_in_UsersTable(user.username, 1);
+      await then.tweetCount_is_updated_in_UsersTable(user.username, 1);
     });
   });
 });
