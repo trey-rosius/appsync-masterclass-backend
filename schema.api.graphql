@@ -110,7 +110,7 @@ type Tweet implements ITweet {
   text: String!
   replies: Int!
   likes: Int!
-  retweet: Int!
+  retweets: Int!
   liked: Boolean!
   retweeted: Boolean!
 }
