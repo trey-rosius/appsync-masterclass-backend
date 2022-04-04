@@ -108,6 +108,34 @@ const a_user_calls_getMyProfile = async (user) => {
   return profile;
 };
 
+const a_user_calls_tweet = async (user, text) => {
+  const tweet = `mutation tweet($text: String!) {
+    tweet(text: $text) {
+      id
+      createdAt
+      text
+      replies
+      likes
+      retweets
+     
+    }
+  }`;
+  const variables = {
+    text,
+  };
+
+  const data = await GraphQL(
+    process.env.API_URL,
+    tweet,
+    variables,
+    user.accessToken
+  );
+  const newTweet = data.tweet;
+
+  console.log(`[${user.username}] - posted new tweet`);
+
+  return newTweet;
+};
 const a_user_calls_editMyProfile = async (user, input) => {
   const editMyProfile = `mutation editMyProfile($input: ProfileInput!) {
     editMyProfile(newProfile: $input) {
@@ -211,4 +239,5 @@ module.exports = {
   we_invoke_getImageUploadUrl,
   a_user_calls_getImageUploadUrl,
   we_invoke_tweet,
+  a_user_calls_tweet,
 };
