@@ -17,7 +17,7 @@ mappingTemplates:
     response: false
   - type: Query
     field: getTweets
-    dataSource: tweetTable
+    dataSource: tweetsTable
 
   - type: Mutation
     field: editMyProfile
@@ -29,6 +29,12 @@ mappingTemplates:
     request: false
     response: false
 
+  #NESTED FIELDS
+
+  - type: Tweet
+    field: profile
+    dataSource: usersTable
+
 dataSources:
   - type: NONE
     name: none
@@ -36,7 +42,7 @@ dataSources:
     name: usersTable
     config:
       tableName: !Ref UsersTable
-  - type: AWS_LAMBDA
+  - type: AMAZON_DYNAMODB
     name: tweetsTable
     config:
       tableName: !Ref TweetsTable
