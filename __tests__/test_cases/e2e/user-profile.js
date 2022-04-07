@@ -6,7 +6,7 @@ const then = require("../../steps/then");
 const chance = require("chance").Chance();
 
 const path = require("path");
-
+jest.setTimeout(30000);
 describe("Given an authenticated user", () => {
   let user, profile;
   beforeAll(async () => {
