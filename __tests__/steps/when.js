@@ -3,7 +3,28 @@ const AWS = require("aws-sdk");
 const fs = require("fs");
 const velocityMapper = require("amplify-appsync-simulator/lib/velocity/value-mapper/mapper");
 const velocityTemplate = require("amplify-velocity-template");
-const GraphQL = require("../lib/graphql");
+const { GraphQL, registerFragment } = require("../lib/graphql");
+
+const myProfileFragment = `
+fragment myProfileFields on MyProfile {
+    backgroundImageUrl
+      bio
+      birthdate
+      createdAt
+      followersCount
+      followingCount
+      id
+      imageUrl
+      likesCount
+      location
+      name
+      screenName
+      tweetsCount
+      website
+
+}
+`;
+registerFragment("myProfileFields", myProfileFragment);
 
 const we_invoke_confirmUserSignup = async (username, name, email) => {
   const handler = require("../../functions/confirm-user-signup").handler;
@@ -78,20 +99,7 @@ const we_invoke_an_appsync_template = (templatePath, context) => {
 const a_user_calls_getMyProfile = async (user) => {
   const getMyProfile = `query getMyProfile {
     getMyProfile {
-      backgroundImageUrl
-      bio
-      birthdate
-      createdAt
-      followersCount
-      followingCount
-      id
-      imageUrl
-      likesCount
-      location
-      name
-      screenName
-      tweetsCount
-      website
+     ... myProfileFields
     }
   }`;
 
@@ -122,6 +130,7 @@ const a_user_calls_tweet = async (user, text) => {
       replies
       likes
       retweets
+      liked
      
     }
   }`;
@@ -144,20 +153,7 @@ const a_user_calls_tweet = async (user, text) => {
 const a_user_calls_editMyProfile = async (user, input) => {
   const editMyProfile = `mutation editMyProfile($input: ProfileInput!) {
     editMyProfile(newProfile: $input) {
-      backgroundImageUrl
-      bio
-      birthdate
-      createdAt
-      followersCount
-      followingCount
-      id
-      imageUrl
-      likesCount
-      location
-      name
-      screenName
-      tweetsCount
-      website
+   ... myProfileFields
     }
   }`;
   const variables = {
@@ -253,6 +249,7 @@ const a_user_calls_getTweets = async (user, userId, limit, nextToken) => {
       replies
       likes
       retweets
+      liked
       }
 
     }
@@ -293,6 +290,7 @@ const a_user_calls_getMyTimeline = async (user, limit, nextToken) => {
       replies
       likes
       retweets
+      liked
       }
 
     }
